@@ -41,10 +41,9 @@ bot.on('ready', () => {
 
             // Store token
             const webToken = results.token;
-						console.dir(webToken);
 
             // Full Authenticated
-            console.log('Authenticated with MrNodeBot');
+            console.log(`Authenticated with MrNodeBot`);
 
             // Handle Discord Message
             bot.on('message', message => {
@@ -71,7 +70,7 @@ bot.on('ready', () => {
 
                 rp({
                         uri: config.mrNodeBot.endpoint,
-												json: true,
+                        json: true,
                         method: 'POST',
                         body: {
                             token: webToken,
@@ -83,11 +82,30 @@ bot.on('ready', () => {
                     .catch(e => console.dir)
             });
 
+            // User Presence Updates
             bot.on('presenceUpdate', (oldMem, newMem) => {
-                const guild = newMem.guild;
-                const channel = bot.channels.find('name', 'general');
+                // Channel to report back to
+                const channel = bot.channels.find('name', 'nodebot');
+
+                // User is playing a game
                 if (newMem.user.presence.game) {
-                    channel.sendMessage(`${newMem.user.username} is now playing ${newMem.user.presence.game.name}`);
+                    const message = `${newMem.user.username} is now playing ${newMem.user.presence.game.name}`;
+
+                    // Send to channel
+                    channel.sendMessage(message);
+
+                    // Player is playing overwatch
+                    if (newMem.user.presence.game.name == 'Overwatch') {
+                        // Grab the overwatch players role
+                        const role = newMem.guild.roles.find('name', 'overwatch_players');
+                        // Send the members the announcement
+                        if (role && role.members) {
+                            role.members.forEach(member => {
+                              member.sendMessage(message);
+                            });
+                        }
+                    }
+
                 }
             });
 
