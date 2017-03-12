@@ -1,0 +1,24 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+author	package.json	/^  "author": "",$/;"	f
+bufferutil	package.json	/^    "bufferutil": "^3.0.0",$/;"	f
+dependencies	package.json	/^  "dependencies": {$/;"	f
+description	package.json	/^  "description": "",$/;"	f
+discord.js	package.json	/^    "discord.js": "^11.0.0",$/;"	f
+erlpack	package.json	/^    "erlpack": "hammerandchisel\/erlpack",$/;"	f
+license	package.json	/^  "license": "ISC",$/;"	f
+lodash	package.json	/^    "lodash": "^4.17.4",$/;"	f
+main	package.json	/^  "main": "index.js",$/;"	f
+moment	package.json	/^    "moment": "^2.17.1",$/;"	f
+name	package.json	/^  "name": "discordadapter",$/;"	f
+ows	package.json	/^    "ows": "^0.3.1",$/;"	f
+request	package.json	/^    "request": "^2.81.0",$/;"	f
+request-promise-native	package.json	/^    "request-promise-native": "^1.0.3",$/;"	f
+scripts	package.json	/^  "scripts": {$/;"	f
+sodium	package.json	/^    "sodium": "^2.0.1"$/;"	f
+test	package.json	/^    "test": "echo \\"Error: no test specified\\" && exit 1"$/;"	f
+version	package.json	/^  "version": "1.0.0",$/;"	f
