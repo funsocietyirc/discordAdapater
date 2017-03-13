@@ -88,11 +88,11 @@ bot.on('ready', () => {
                 if (newMem.user.presence.game) {
                     const message = `${newMem.user.username} is now playing ${newMem.user.presence.game.name}`;
 
+                    // Channel to report back to
+                    const channel = bot.channels.find('name', 'nodebot');
 
                     // Player is playing overwatch
                     if (newMem.user.presence.game.name == 'Overwatch') {
-                        // Channel to report back to
-                        const channel = bot.channels.find('name', 'general');
 
                         // Grab the overwatch players role
                         const role = newMem.guild.roles.find('name', 'overwatch_players');
@@ -108,17 +108,17 @@ bot.on('ready', () => {
 
                         // Send the members of the overwatch role the announcement
                         if (role && role.members) role.members.forEach(member => {
-                            //member.sendMessage(message);
-                            member.sendEmbed(embed).catch(e => console.dir(e));
+                            // Make sure the user is online
+                            if (member.user.presence.status == 'online')
+                                member.sendEmbed(embed).catch(e => console.dir(e));
                         });
 
                         // Send to channel
                         channel.sendEmbed(embed);
                         // End Player is playing overwatch
                     } else {
-                      // Channel to report back to
-                      const channel = bot.channels.find('name', 'nodebot');
-                      channel.sendMessage(message).catch(e => console.dir(e));
+                        // Channel to report back to
+                        channel.sendMessage(message).catch(e => console.dir(e));
                     }
 
 
