@@ -1,9 +1,10 @@
 'use strict';
 module.exports = {
     watchFor: '',
+    notify: '',
     mrNodeBot: {
-         server: 'https://bot.fsociety.guru/authenticate',
-         endpoint: 'https://bot.fsociety.guru/secure/gateway',
+        server: 'https://bot.fsociety.guru/authenticate',
+        endpoint: 'https://bot.fsociety.guru/secure/gateway',
         username: '',
         password: '',
     },
