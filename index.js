@@ -84,27 +84,43 @@ bot.on('ready', () => {
 
             // User Presence Updates
             bot.on('presenceUpdate', (oldMem, newMem) => {
-                // Channel to report back to
-                const channel = bot.channels.find('name', 'nodebot');
-
                 // User is playing a game
                 if (newMem.user.presence.game) {
                     const message = `${newMem.user.username} is now playing ${newMem.user.presence.game.name}`;
 
-                    // Send to channel
-                    channel.sendMessage(message);
 
                     // Player is playing overwatch
                     if (newMem.user.presence.game.name == 'Overwatch') {
+                        // Channel to report back to
+                        const channel = bot.channels.find('name', 'general');
+
                         // Grab the overwatch players role
                         const role = newMem.guild.roles.find('name', 'overwatch_players');
-                        // Send the members the announcement
-                        if (role && role.members) {
-                            role.members.forEach(member => {
-                              member.sendMessage(message);
-                            });
-                        }
+                        const embed = new Discord.RichEmbed()
+                            .setTitle(`${newMem.user.username} is now playing Overwatch`)
+                            .setAuthor('MrOverwatchBot', 'https://static.eurheilu.com/themes/eurheilu/img/games/overwatch.png')
+                            .setColor(3447003)
+                            .setDescription('Group up! Invite them to the voice channel, be social, and most of all have fun!')
+                            .setFooter('A MrNodeBot communication')
+                            .setImage('https://mms.businesswire.com/media/20160602006554/en/512909/5/Overwatch_Heroes.jpg')
+                            .setThumbnail('https://pbs.twimg.com/profile_images/631057390830530560/hzVHWPVV.png')
+
+
+                        // Send the members of the overwatch role the announcement
+                        if (role && role.members) role.members.forEach(member => {
+                            //member.sendMessage(message);
+                            member.sendEmbed(embed).catch(e => console.dir(e));
+                        });
+
+                        // Send to channel
+                        channel.sendEmbed(embed);
+                        // End Player is playing overwatch
+                    } else {
+                      // Channel to report back to
+                      const channel = bot.channels.find('name', 'nodebot');
+                      channel.sendMessage(message).catch(e => console.dir(e));
                     }
+
 
                 }
             });
