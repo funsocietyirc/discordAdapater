@@ -1,26 +1,38 @@
 'use strict';
 
 const _ = require('lodash');
-const Discord = require('discord.js');
-const moment = require('moment');
-const config = require('./config.js');
-
-const bot = new Discord.Client();
-const token = config.discord.token;
 const rp = require('request-promise-native');
 
+const Discord = require('discord.js');
+const Moment = require('moment');
+
+const config = require('./config.js');
 const nodeBot = require('./nodeBot');
 
 // Login to Discord
-bot.login(token);
+const bot = new Discord.Client();
+bot.login(config.discord.token);
 
-// Connected To Discord
+
+// Discord Helpers
+const sendEmbedToRole = (guild, roleName, embed) => {
+    // Find the role
+    const role = guild.roles.find('name', roleName);
+
+    // Send the members of the overwatch role the announcement
+    if (role && role.members) role.members.forEach(member => {
+        // Make sure the user is online
+        if (member.user.presence.status == 'online')
+            member.sendEmbed(embed).catch(e => console.dir(e));
+    });
+};
+
+// General Display messages
 bot.on('ready', () => console.log('Connected to Discord'));
-
+bot.on('reconnecting', () => console.log('Reconnected to Discord'));
 
 // Handle Discord Message
 bot.on('message', message => {
-
     // Is this us?
     if (message.author.username == config.discord.nick) return;
 
@@ -34,10 +46,10 @@ bot.on('message', message => {
     message.mentions.users.forEach(user => content = content.replace(`@${user.id}`, user.username));
 
     // Parse the time with moment
-    const time = moment(message.createdTimestamp);
+    const time = Moment(message.createdTimestamp).format('dddd, MMMM Do YYYY, h:mm:ss a');
 
     // Format the response
-    const response = `[Discord ${time.format('dddd, MMMM Do YYYY, h:mm:ss a')} ${message.channel.guild.name} #${message.channel.name} ${message.author.username}] ${content}`;
+    const response = `[Discord ${time} ${message.channel.guild.name}->#${message.channel.name}->${message.author.username}] ${content}`;
 
     // Notify
     nodeBot(config.notify, response).catch(e => console.dir);
@@ -46,7 +58,7 @@ bot.on('message', message => {
 // User Presence Updates
 bot.on('presenceUpdate', (oldMem, newMem) => {
     // User is not playing a game, bail
-    if (!newMem.user.presence.game) return;
+    if (!newMem || !newMem.user.presence.game) return;
 
     // Default message
     const message = `${newMem.user.username} is now playing ${newMem.user.presence.game.name}`;
@@ -58,7 +70,6 @@ bot.on('presenceUpdate', (oldMem, newMem) => {
     switch (newMem.user.presence.game.name) {
         case 'Overwatch':
             // Grab the overwatch players role
-            const role = newMem.guild.roles.find('name', 'overwatch_players');
             const embed = new Discord.RichEmbed()
                 .setTitle(`${newMem.user.username} is now playing Overwatch`)
                 .setAuthor('MrOverwatchBot', 'https://static.eurheilu.com/themes/eurheilu/img/games/overwatch.png')
@@ -66,17 +77,9 @@ bot.on('presenceUpdate', (oldMem, newMem) => {
                 .setDescription('Group up! Invite them to the voice channel, be social, and most of all have fun!')
                 .setFooter('A MrNodeBot communication')
                 .setImage('https://mms.businesswire.com/media/20160602006554/en/512909/5/Overwatch_Heroes.jpg')
-                .setThumbnail('https://pbs.twimg.com/profile_images/631057390830530560/hzVHWPVV.png')
+                .setThumbnail('https://pbs.twimg.com/profile_images/631057390830530560/hzVHWPVV.png');
 
-
-            // Send the members of the overwatch role the announcement
-            if (role && role.members) role.members.forEach(member => {
-                // Make sure the user is online
-                if (member.user.presence.status == 'online')
-                    member.sendEmbed(embed).catch(e => console.dir(e));
-            });
-
-            // Send to channel
+            sendEmbedToRole(newMem.guild, 'overwatch_players', embed);
             channel.sendEmbed(embed);
             break;
         default:
