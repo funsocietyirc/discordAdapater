@@ -1,6 +1,5 @@
 'use strict';
 
-const _ = require('lodash');
 const rp = require('request-promise-native');
 
 const Discord = require('discord.js');
@@ -20,21 +19,26 @@ const sendEmbedToRole = (guild, roleName, embed) => {
     const role = guild.roles.find('name', roleName);
 
     // Send the members of the overwatch role the announcement
-    if (role && role.members) role.members.forEach(member => {
-        // Make sure the user is online
-        if (member.user.presence.status == 'online')
-            member.sendEmbed(embed).catch(e => console.dir(e));
-    });
+    if (role && role.members)
+        role.members
+        .filter(x => x.user.presence.status === 'online')
+        .forEach(member => member.sendEmbed(embed).catch(e => console.dir(e)));
 };
 
 // General Display messages
-bot.on('ready', () => console.log('Connected to Discord'));
+bot.on('ready', () => {
+   console.log('Connected to Discord');
+   bot.user.setGame(null);
+   bot.user.setGame('with himself');
+
+});
+
 bot.on('reconnecting', () => console.log('Reconnected to Discord'));
 
 // Handle Discord Message
 bot.on('message', message => {
-    // Is this us?
-    if (message.author.username == config.discord.nick) return;
+    // Disregard self messages
+    if (message.author.username == bot.user.username) return;
 
     // Check to see if I was mentioned
     let mentioned = message.mentions.users.find('username', config.watchFor);
@@ -57,8 +61,8 @@ bot.on('message', message => {
 
 // User Presence Updates
 bot.on('presenceUpdate', (oldMem, newMem) => {
-    // User is not playing a game, bail
-    if (!newMem || !newMem.user.presence.game) return;
+    // User is not playing a game, or is a bot, bail
+    if (!newMem || !newMem.user.presence.game || newMem.user.bot) return;
 
     // Default message
     const message = `${newMem.user.username} is now playing ${newMem.user.presence.game.name}`;
