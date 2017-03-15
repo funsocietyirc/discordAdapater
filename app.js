@@ -80,7 +80,6 @@ bot.on('presenceUpdate', (oldMem, newMem) => {
                 .setFooter('A MrNodeBot communication')
                 .setImage('https://mms.businesswire.com/media/20160602006554/en/512909/5/Overwatch_Heroes.jpg')
                 .setThumbnail('https://pbs.twimg.com/profile_images/631057390830530560/hzVHWPVV.png'));
-            channel.sendEmbed(embed);
             break;
         case 'Factorio':
             // Grab the overwatch players role
@@ -92,7 +91,6 @@ bot.on('presenceUpdate', (oldMem, newMem) => {
                 .setFooter('A MrNodeBot communication')
                 .setImage('http://cdn.akamai.steamstatic.com/steam/apps/427520/header.jpg?t=1489159190')
                 .setThumbnail('https://i.imgur.com/8OSnAuk.jpg'));
-            channel.sendEmbed(embed);
         default:
             channel.sendMessage(message).catch(e => console.dir(e));
             break;
