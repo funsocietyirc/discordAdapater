@@ -78,12 +78,12 @@ buffer-shims@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/buffer-shims/-/buffer-shims-1.0.0.tgz#9978ce317388c649ad8793028c3477ef044a8b51"
 
-bufferutil@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/bufferutil/-/bufferutil-3.0.0.tgz#afbb831c47229accf0b1f207d4a9942841b0ab0f"
+bufferutil@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/bufferutil/-/bufferutil-3.0.1.tgz#20b2ef5159ac49f20e44bce38e7c35a6a904ee66"
   dependencies:
     bindings "~1.2.1"
-    nan "~2.5.0"
+    nan "~2.6.0"
     prebuild-install "~2.1.0"
 
 caseless@~0.12.0:
@@ -162,9 +162,9 @@ end-of-stream@^1.0.0, end-of-stream@^1.1.0:
   dependencies:
     once "^1.4.0"
 
-erlpack@hammerandchisel/erlpack:
-  version "0.1.0"
-  resolved "https://codeload.github.com/hammerandchisel/erlpack/tar.gz/ad84c69355f03770a84d4bd8a20b981dd168fcf4"
+erlpack@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/erlpack/-/erlpack-0.1.2.tgz#cf1f4f755d0728ebc2d11b2e3c92bd2da834514e"
   dependencies:
     bindings "^1.2.1"
     nan "^2.1.0"
@@ -359,13 +359,9 @@ moment@^2.18.1:
   version "2.18.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 
-nan@^2.1.0, nan@^2.2.1:
+nan@^2.1.0, nan@^2.2.1, nan@~2.6.0:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.6.2.tgz#e4ff34e6c95fdfb5aecc08de6596f43605a7db45"
-
-nan@~2.5.0:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/nan/-/nan-2.5.1.tgz#d5b01691253326a97a2bbee9e61c55d8d60351e2"
 
 node-abi@^2.0.0:
   version "2.0.2"

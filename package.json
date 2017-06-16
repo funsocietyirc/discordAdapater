@@ -9,9 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bufferutil": "^3.0.0",
+    "bufferutil": "^3.0.1",
     "discord.js": "^11.1.0",
-    "erlpack": "hammerandchisel/erlpack",
+    "erlpack": "^0.1.2",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "ows": "^0.3.1",
