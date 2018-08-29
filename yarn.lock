@@ -78,13 +78,13 @@ buffer-shims@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/buffer-shims/-/buffer-shims-1.0.0.tgz#9978ce317388c649ad8793028c3477ef044a8b51"
 
-bufferutil@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/bufferutil/-/bufferutil-3.0.1.tgz#20b2ef5159ac49f20e44bce38e7c35a6a904ee66"
+bufferutil@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/bufferutil/-/bufferutil-3.0.2.tgz#7880c1c4c04ce8a13fffac3fb9ee02ac0cc0d8dc"
   dependencies:
     bindings "~1.2.1"
     nan "~2.6.0"
-    prebuild-install "~2.1.0"
+    prebuild-install "~2.2.0"
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -414,9 +414,9 @@ performance-now@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-0.2.0.tgz#33ef30c5c77d4ea21c5a53869d91b56d8f2555e5"
 
-prebuild-install@~2.1.0:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/prebuild-install/-/prebuild-install-2.1.2.tgz#d9ae0ca85330e03962d93292f95a8b44c2ebf505"
+prebuild-install@~2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/prebuild-install/-/prebuild-install-2.2.0.tgz#55934756a32bac8747390ca44ff663cee8b99b69"
   dependencies:
     expand-template "^1.0.2"
     github-from-package "0.0.0"
@@ -430,7 +430,7 @@ prebuild-install@~2.1.0:
     rc "^1.1.6"
     simple-get "^1.4.2"
     tar-fs "^1.13.0"
-    tunnel-agent "^0.4.3"
+    tunnel-agent "^0.6.0"
     xtend "4.0.1"
 
 prism-media@^0.0.1:
@@ -624,10 +624,6 @@ tough-cookie@>=2.3.0, tough-cookie@~2.3.0:
   resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.3.2.tgz#f081f76e4c85720e6c37a5faced737150d84072a"
   dependencies:
     punycode "^1.4.1"
-
-tunnel-agent@^0.4.3:
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/tunnel-agent/-/tunnel-agent-0.4.3.tgz#6373db76909fe570e08d73583365ed828a74eeeb"
 
 tunnel-agent@^0.6.0:
   version "0.6.0"
